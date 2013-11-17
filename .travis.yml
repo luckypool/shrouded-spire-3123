@@ -5,6 +5,6 @@ env: PERL_CPANM_OPT="--notest --force --skip-satisfied"
 before_install:
     - "cpanm Carton"
 install: 
-    - "carton install"
+    - "carton install 2>&1 | sed -u 's/^/       /'"
 script:
     - "carton exec -- prove t"
