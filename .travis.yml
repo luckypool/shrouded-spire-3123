@@ -1,10 +1,11 @@
 language: perl
 perl:
-    - "5.16"
+    - "5.16.3"
+    - "5.14.4"
 env: PERL_CPANM_OPT="--notest --force --skip-satisfied"
 before_install:
-    - "cpanm Carton"
+    - "cpanm Carton 2>&1 | sed -u 's/^/       /'"
 install: 
-    - "carton install 2>&1 | sed -u 's/^/       /'"
+    - "carton install --deployment 2>&1 | sed -u 's/^/       /'"
 script:
     - "carton exec -- prove t"
